@@ -5,6 +5,13 @@ function Node(value) {
   this.parent = null;
 }
 
-Node.prototype.addEdge = function(neighbor) {
-  this.edges.push(neighbor);
+// Connect one or more neighbors
+Node.prototype.connect = function(neighbor) {
+  // This is a fancy way of having a function
+  // that can accept a variable number of arguments
+  for (var i = 0; i < arguments.length; i++) {
+    this.edges.push(arguments[i]);
+    // Connect both ways
+    arguments[i].edges.push(this);
+  }
 }
